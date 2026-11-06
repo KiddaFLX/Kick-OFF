@@ -1,0 +1,560 @@
+@import "tailwindcss";
+
+:root {
+  --pitch-950: #0B0E14;
+  --pitch-900: #111620;
+  --pitch-850: #151C28;
+  --pitch-800: #1A2232;
+  --pitch-700: rgba(255, 255, 255, 0.08);
+  --pitch-600: rgba(255, 255, 255, 0.14);
+  --pitch-500: rgba(255, 255, 255, 0.22);
+  --pitch-400: #8E9BAE;
+  --line-green: #10B981;
+  --bright-green: #10B981;
+  --chalk: #F1F4F9;
+  --chalk-dim: #94A1B2;
+  --chalk-muted: #606D80;
+  --amber: #F59E0B;
+  --red: #EF4444;
+  --font-display: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pitch-950);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tabular figures for all numeric and statistical content */
+.mono, .tabular-nums, table, [data-tabular="true"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Minimalist App Shell Layout */
+.app-shell-modern {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--pitch-950);
+}
+
+.modern-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(5, 97, 45, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--pitch-700);
+  padding: 0 24px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.modern-nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--pitch-700);
+  padding: 3px;
+  border-radius: 6px;
+}
+
+.modern-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--chalk-dim);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+
+.modern-nav-pill:hover {
+  color: var(--chalk);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.modern-nav-pill.active {
+  color: #FFFFFF;
+  background: var(--pitch-850);
+  border-color: var(--pitch-600);
+  font-weight: 600;
+}
+
+.modern-content-wrap {
+  flex: 1;
+  padding: 24px 32px 48px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .modern-topbar {
+    height: auto;
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .modern-nav-pills {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .modern-content-wrap {
+    padding: 16px;
+  }
+}
+
+/* Minimalist Clean Typography */
+h1.page-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: var(--chalk);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p.page-sub {
+  color: var(--chalk-dim);
+  margin: 0 0 24px 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  max-width: 720px;
+}
+
+/* Minimalist Cards - Flat, Single Elevation, Crisp Border */
+.card {
+  background: var(--pitch-900);
+  border: 1px solid var(--pitch-700);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.result-card {
+  background: var(--pitch-900);
+  border: 1px solid var(--pitch-700);
+  border-radius: 8px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.result-card h3 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--chalk);
+  margin: 0 0 14px 0;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.01em;
+}
+
+/* Minimalist Forms & Fields */
+.form-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 200px;
+  flex: 1;
+}
+
+.field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--chalk-muted);
+}
+
+select, input {
+  background: var(--pitch-850);
+  border: 1px solid var(--pitch-700);
+  color: var(--chalk);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+select:focus, input:focus {
+  border-color: var(--pitch-500);
+  background: var(--pitch-800);
+}
+
+select:disabled, input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Minimalist Clean Buttons - No Gimmicky Glows */
+button.btn, a.btn {
+  background: var(--bright-green);
+  color: #03180E;
+  border: 1px solid transparent;
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+button.btn:hover:not(:disabled), a.btn:hover {
+  background: #34D399;
+  color: #02120A;
+}
+
+button.btn:active:not(:disabled) {
+  opacity: 0.92;
+}
+
+button.btn.secondary, a.btn.secondary {
+  background: transparent;
+  border: 1px solid var(--pitch-600);
+  color: var(--chalk);
+}
+
+button.btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--pitch-500);
+  color: #FFFFFF;
+}
+
+button.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.icon-btn {
+  background: var(--pitch-850);
+  border: 1px solid var(--pitch-700);
+  color: var(--chalk-dim);
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.icon-btn:hover:not(:disabled) {
+  background: var(--pitch-800);
+  color: var(--chalk);
+  border-color: var(--pitch-600);
+}
+
+.icon-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.form-hint {
+  min-height: 18px;
+  color: var(--amber);
+  font-size: 12px;
+  margin: 8px 0 0 0;
+}
+
+/* Minimalist Clean Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+th {
+  text-align: left;
+  color: var(--chalk-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--pitch-700);
+  background: var(--pitch-900);
+}
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--pitch-700);
+}
+
+tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Minimalist Probability Grid */
+.prob-grid {
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .prob-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prob-card {
+  background: var(--pitch-850);
+  border: 1px solid var(--pitch-700);
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+  transition: border-color 0.15s ease;
+}
+
+.prob-card.winner {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.prob-label {
+  font-size: 11.5px;
+  color: var(--chalk-dim);
+  font-weight: 500;
+}
+
+.prob-value {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  margin-top: 4px;
+  color: var(--chalk);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.prob-card.winner .prob-value {
+  color: var(--bright-green);
+}
+
+.prob-bar-track {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.prob-bar-fill {
+  height: 100%;
+  background: var(--bright-green);
+  transition: width 0.35s ease-out;
+}
+
+/* Minimalist Unboxed Status & Metadata Indicators */
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--chalk-dim);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.badge.recommended {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--bright-green);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  font-weight: 600;
+}
+
+.flash-bar {
+  margin-bottom: 18px;
+}
+
+.flash {
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: var(--amber);
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flash.success {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.2);
+  color: var(--bright-green);
+}
+
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.feature-name {
+  width: 220px;
+  font-size: 13px;
+  color: var(--chalk-dim);
+}
+
+.feature-bar-track {
+  flex: 1;
+  background: var(--pitch-800);
+  border-radius: 3px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.feature-bar-fill {
+  height: 100%;
+  background: var(--bright-green);
+  transition: width 0.3s ease;
+}
+
+.feature-score {
+  width: 55px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--chalk-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.league-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.league-card {
+  min-height: 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--pitch-700);
+  border-radius: 6px;
+  background: var(--pitch-850);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.league-card:hover {
+  border-color: var(--pitch-600);
+  background: var(--pitch-800);
+}
+
+.league-card.selected {
+  border-color: var(--bright-green);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.league-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--pitch-800);
+  border: 1px solid var(--pitch-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.league-card span {
+  font-weight: 500;
+  font-size: 12.5px;
+  text-align: center;
+  color: var(--chalk);
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 6px;
+  border: 1px solid var(--pitch-700);
+  background: var(--pitch-900);
+}
+
+/* Minimalist Clean Spinner */
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--pitch-700);
+  border-top-color: var(--bright-green);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.ai-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--chalk);
+  margin: 0;
+  background: var(--pitch-850);
+  border: 1px solid var(--pitch-700);
+  padding: 14px 18px;
+  border-radius: 6px;
+}

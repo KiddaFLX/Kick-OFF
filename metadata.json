@@ -1,0 +1,6 @@
+{
+  "name": "Football Match Prediction System",
+  "description": "Machine learning and AI-powered football match prediction system featuring pre-match models, live in-play score prediction, automated LiveScore.com scraping for real-time and historical match scores, feature importance, and tactical narratives.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
